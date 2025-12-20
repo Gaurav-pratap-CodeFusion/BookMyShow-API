@@ -106,6 +106,7 @@ spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
+
 <hr>
 
 <h2>🛠️ Future Enhancements</h2>
