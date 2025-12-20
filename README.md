@@ -100,13 +100,13 @@ src/
 
 <h2>⚙️ application.properties Example</h2>
 
-```
+````
 spring.datasource.url=jdbc:mysql://localhost:3306/bookmyshow
 spring.datasource.username=root
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-```
+````
 
 <hr>
 
