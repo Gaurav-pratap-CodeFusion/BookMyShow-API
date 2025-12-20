@@ -99,7 +99,8 @@ src/
 <hr>
 
 <h2>⚙️ application.properties Example</h2>
-```properties
+
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/bookmyshow
 spring.datasource.username=root
 spring.datasource.password=yourpassword
