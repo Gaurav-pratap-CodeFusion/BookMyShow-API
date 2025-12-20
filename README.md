@@ -99,13 +99,17 @@ src/
 <hr>
 
 <h2>⚙️ application.properties Example</h2>
-<pre>
+<div style="background:#000; color:#00ff00; padding:15px; border-radius:10px; font-size:14px;">
+<pre style="background:#000; margin:0; padding:0;">
+<code>
 spring.datasource.url=jdbc:mysql://localhost:3306/bookmyshow
 spring.datasource.username=root
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+</code>
 </pre>
+</div>
 
 <hr>
 
