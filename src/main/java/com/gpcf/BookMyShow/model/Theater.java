@@ -1,18 +1,14 @@
-package com.gpcf.BookMyShow.Model;
-
+package com.gpcf.BookMyShow.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Table(name = "theaters")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Theater {
 
     @Id
@@ -24,8 +20,8 @@ public class Theater {
 
     private String address;
     private String city;
-    private Integer totalSrceens;
+    private Integer totalScreens;
 
-    @OneToMany(mappedBy = "theaters", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
     private List<Screen> screens;
 }

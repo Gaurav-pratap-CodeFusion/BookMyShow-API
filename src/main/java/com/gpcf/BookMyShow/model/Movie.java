@@ -1,13 +1,11 @@
-package com.gpcf.BookMyShow.Model;
-
+package com.gpcf.BookMyShow.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
 
 @Entity
-@Table(name="movies")
+@Table(name = "movies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +14,6 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(nullable = false)
     private String title;
@@ -28,7 +25,6 @@ public class Movie {
     private String releaseDate;
     private String posterUrl;
 
-    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Show> shows;
 }
-

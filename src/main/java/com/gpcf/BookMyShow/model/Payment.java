@@ -1,15 +1,13 @@
-package com.gpcf.BookMyShow.Model;
+package com.gpcf.BookMyShow.model;
 
-
+import com.gpcf.BookMyShow.enums.PaymentMethod;
+import com.gpcf.BookMyShow.enums.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="payments")
+@Table(name = "payments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +17,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String transactionId;
 
     @Column(nullable = false)
@@ -28,11 +26,13 @@ public class Payment {
     @Column(nullable = false)
     private LocalDateTime paymentTime;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status; //SUCCESS,FAILED,PENDING
+    private PaymentStatus status;
 
     @OneToOne(mappedBy = "payment")
     private Booking booking;

@@ -1,18 +1,14 @@
-package com.gpcf.BookMyShow.Model;
+package com.gpcf.BookMyShow.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.aot.generate.GeneratedTypeReference;
-
+import lombok.*;
 import java.util.List;
 
-
 @Entity
+@Table(name = "users")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
