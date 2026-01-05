@@ -15,4 +15,15 @@ public class MovieDto {
     private Integer durationMins;
     private String releaseDate;
     private String posterUrl;
+
+
+
+    public MovieDto(Long id, String title, String language,String genre,String description) {
+        this.id=id;
+        this.title=title;
+        this.language=language;
+        this.genre=genre;
+        this.description=description;
+
+    }
 }

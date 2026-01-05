@@ -6,6 +6,7 @@ import com.gpcf.BookMyShow.service.TheaterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class TheaterController {
 
     @PostMapping
     @Operation(summary = "Add Theaters")
+    @PreAuthorize("hasRole('ADMIN')")
     public TheaterDto create(@RequestBody TheaterDto dto) {
         return theaterService.createTheater(dto);
     }

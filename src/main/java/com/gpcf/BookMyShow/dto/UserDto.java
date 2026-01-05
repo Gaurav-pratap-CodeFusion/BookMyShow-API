@@ -1,8 +1,11 @@
 package com.gpcf.BookMyShow.dto;
 
+import com.gpcf.BookMyShow.model.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -45,4 +48,5 @@ public class UserDto {
             example = "9876543210"
     )
     private String phoneNumber;
+
 }

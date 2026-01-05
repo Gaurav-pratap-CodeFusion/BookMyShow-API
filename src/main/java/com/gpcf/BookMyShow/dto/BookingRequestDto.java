@@ -6,7 +6,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookingRequestDto {
+public class  BookingRequestDto {
 
     private Long userId;
     private Long showId;

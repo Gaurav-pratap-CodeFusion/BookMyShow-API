@@ -22,11 +22,12 @@ public class BookingService {
     private final ShowRepository showRepository;
     private final ShowSeatRepository showSeatRepository;
     private final BookingRepository bookingRepository;
+    private final MovieService movieService;
 
     @Transactional
     public BookingDto createBooking(BookingRequestDto request) {
 
-        User user = userRepository.findById(request.getUserId())
+        UserModel user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Show show = showRepository.findById(request.getShowId())
@@ -139,11 +140,21 @@ public class BookingService {
         ));
 
         Show show = booking.getShow();
+        Movie movie = show.getMovie();
+
+        MovieDto movieDto = new MovieDto(
+                movie.getId(),
+                movie.getTitle(),
+                movie.getLanguage(),
+                movie.getDescription(),
+                movie.getGenre()
+        );
+
         dto.setShow(new ShowDto(
                 show.getId(),
                 show.getStartTime(),
                 show.getEndTime(),
-                null,
+                movieDto,
                 null,
                 null
         ));

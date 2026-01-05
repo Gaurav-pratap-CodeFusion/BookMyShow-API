@@ -1,10 +1,14 @@
 package com.gpcf.BookMyShow.service;
 
+import com.gpcf.BookMyShow.Repository.RoleRepository;
 import com.gpcf.BookMyShow.dto.UserDto;
 import com.gpcf.BookMyShow.Exception.ResourceNotFoundException;
-import com.gpcf.BookMyShow.model.User;
+import com.gpcf.BookMyShow.model.Role;
+import com.gpcf.BookMyShow.model.UserModel;
 import com.gpcf.BookMyShow.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,25 +19,25 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-
-    public UserDto createUser(UserDto dto) {
-        User user = mapToEntity(dto);
-        return mapToDto(userRepository.save(user));
-    }
+    private  final RoleRepository roleRepository;
 
     public UserDto getUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        return mapToDto(user);
+
+        UserModel user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return mapToUserDto(user);
     }
 
     public List<UserDto> getAllUsers() {
+
         return userRepository.findAll()
-                .stream().map(this::mapToDto)
-                .collect(Collectors.toList());
+                .stream()
+                .map(this::mapToUserDto).toList();
     }
 
-    private UserDto mapToDto(User user) {
+    private UserDto mapToUserDto(UserModel user) {
+
         return new UserDto(
                 user.getId(),
                 user.getName(),
@@ -42,12 +46,16 @@ public class UserService {
         );
     }
 
-    private User mapToEntity(UserDto dto) {
-        User user = new User();
-        user.setName(dto.getName());
-        user.setEmail(dto.getEmail());
-        user.setPhoneNumber(dto.getPhoneNumber());
-        user.setPassword("encrypted"); // JWT later
-        return user;
+    public void assignAdminRole(Long userId) {
+
+        UserModel user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Role adminRole = roleRepository.findByrole("ADMIN")
+                .orElseThrow(() -> new RuntimeException("ADMIN role not found"));
+
+        user.getRoles().add(adminRole);
+
+        userRepository.save(user);
     }
 }
